@@ -73,9 +73,12 @@ import Security
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            var data = ["userIdentifier":nil, "fullName":nil, "email":nil] as [String : Any?]
+            var data = ["userIdentifier":nil, "identityToken":nil, "givenName":nil, "familyName":nil, "email":nil] as [String : Any?]
+            
+            let identityToken = NSString(data: appleIDCredential.identityToken!, encoding: String.Encoding.utf8.rawValue);
             
             data.updateValue(appleIDCredential.user, forKey: "userIdentifier")
+            data.updateValue(identityToken, forKey: "identityToken")
             data.updateValue(appleIDCredential.fullName?.givenName, forKey: "givenName")
             data.updateValue(appleIDCredential.fullName?.familyName, forKey: "familyName")
             data.updateValue(appleIDCredential.email, forKey: "email")

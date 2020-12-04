@@ -62,6 +62,7 @@ angular.module('starter', ['ionic'])
           {
             email: "xxx@example.com",
             userIdentifier: "xxxxx.yyyyy.zzzzz...",
+            identityToken: "JWT(xxxxxx)",
             givenName: "xxxxx",
             familyName: "xxxxx"
           }
