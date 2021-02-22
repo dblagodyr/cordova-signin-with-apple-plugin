@@ -56,7 +56,11 @@ import Security
                     let result = CDVPluginResult(status: CDVCommandStatus_OK)
                     self.commandDelegate.send(result, callbackId:command.callbackId)
                 } else {
-                    let err = ["code": ErrorCode.AuthorizationError, "description": error!.localizedDescription] as [AnyHashable : Any]
+                    var description = "Something went wrong";
+                    if (error != nil) {
+                        description = error!.localizedDescription;
+                    }
+                    let err = ["code": ErrorCode.AuthorizationError, "description": description] as [AnyHashable : Any]
                     let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: err)
                     self.commandDelegate.send(result, callbackId:command.callbackId)
                 }
